@@ -15,21 +15,28 @@ public:
 	void SetNextNode(Node<T> & node){nextNode = &node;};
 	int ReturnValue(){ return value_;}
 
-
-	friend void PrintValuesOfConnectedNodes(Node<T> * first){
-		while(first->nextNode!=nullptr){
-			cout << first->value_ << " - > ";
-			first = first->nextNode;}
-		cout << first->value_ << "->";
-		cout << "nullptr" << endl;
-	}
-
-	friend int HowManyNodesConnected(Node<T> * first){
-		int counter=0;
-		while(first->nextNode!=nullptr){
-			counter++;
-			first = first->nextNode;}
-		return counter;
-	}
+	template <typename U>
+	friend void PrintValuesOfConnectedNodes(Node<U> * first);
+	template <typename U>
+	friend int CountConnectedNodes(Node<U> * first);
 
 };
+
+template<typename T>
+void PrintValuesOfConnectedNodes(Node<T> * first){
+	while(first->nextNode!=nullptr){
+		cout << first->value_ << " - > ";
+		first = first->nextNode;}
+	cout << first->value_ << "->";
+	cout << "nullptr" << endl;
+}
+
+template<typename T>
+int CountConnectedNodes(Node<T> *first)
+{
+	int counter=0;
+	while(first->nextNode!=nullptr){
+		counter++;
+		first = first->nextNode;}
+	return counter;
+}
