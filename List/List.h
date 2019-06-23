@@ -11,19 +11,15 @@ class List{
 
 public:
 
-	List()
-	{
+	List(){
 		numberOfElements=0;
-		listOfElements = new int[numberOfElements];
-	} 
+		listOfElements = new int[numberOfElements];}
 
 	void Insert(int index, int value);
 	void Remove(int index);
 	int  Get(int index);
-	void Search(int value);
-    
-
-
+	int Search(int value);
+	int Size();
 };
 
 #endif
