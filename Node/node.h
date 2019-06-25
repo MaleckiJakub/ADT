@@ -11,6 +11,8 @@ class Node{
 public:
 
 	Node(T value) : value_(value),nextNode(nullptr){cout << "Created node with value = "<<value_<<endl;};
+	Node() = delete;
+	~Node(){delete []nextNode;}
 	void ChangeValue(T value){ value_ = value; };
 	void SetNextNode(Node<T> & node){nextNode = &node;};
 	int ReturnValue(){ return value_;}
