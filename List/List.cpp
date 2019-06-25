@@ -3,13 +3,13 @@
 
 ////////////////////////////////////////////////////
 
-void List::Insert(int index, int value)
+template <typename T>
+void List<T>::Insert(int index, T value)
 {
 	if(index<0 || index>numberOfElements){ cout << "Out of index";return;}
-	if(value<0){cout << "Only positive numbers can be used."; return;}
-	int * tempPointer = listOfElements; // copy the pointer
+	T * tempPointer = listOfElements; // copy the pointer
 	numberOfElements+=1;
-	listOfElements = new int[numberOfElements]; // resize the array
+	listOfElements = new T[numberOfElements]; // resize the array
 
 	for(int i=0,j=0; i<numberOfElements;)
 	{
@@ -17,33 +17,38 @@ void List::Insert(int index, int value)
 		else{listOfElements[i++]=tempPointer[j++];//i++;//j++;
 		}
 	}
+	delete []tempPointer;
 }
 
 ////////////////////////////////////////////////////
-
-int List::Get(int index){
+template <typename T>
+T List<T>::Get(int index){
 	if(index<0 || index>numberOfElements){return -1;}
 	return listOfElements[index];}
 
 ///////////////////////////////////////////////////
-
-void List::Remove(int index){
+template <typename T>
+void List<T>::Remove(int index){
 	if(index<0 || index>numberOfElements){cout <<"There is no such an index."; return;}
-	int * tempPointer = listOfElements;
+	T * tempPointer = listOfElements;
 	numberOfElements--;
-	listOfElements = new int[numberOfElements];
+	listOfElements = new T[numberOfElements];
 
 	for(int i=0,j=0; i<numberOfElements;)
 	{
 		if(j==index){j++;}
 		else{listOfElements[i++]=tempPointer[j++];}
 	}
+	delete []tempPointer;
 }
 
 ////////////////////////////////////////////////
-
-int List::Search(int value){
+template <typename T>
+int List<T>::Search(T value){
 	for(int i=0;i<numberOfElements;i++){
 		if(listOfElements[i]==value){return i;}}
 	return -1;
 }
+
+template class List<int>;
+template class List<float>;

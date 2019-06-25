@@ -4,21 +4,24 @@
 
 using namespace std;
 
+template <typename T>
 class List{
 
 	int numberOfElements;
-	int * listOfElements;
+	T * listOfElements;
 
 public:
 
 	List(){
 		numberOfElements=0;
-		listOfElements = new int[numberOfElements];}
+		listOfElements = new T[numberOfElements];}
 
-	void Insert(int index, int value);
+	~List(){delete []listOfElements;}
+
+	void Insert(int index, T value);
 	void Remove(int index);
-	int  Get(int index);
-	int Search(int value);
+	T  Get(int index);
+	int Search(T value);
 	int Size();
 };
 
